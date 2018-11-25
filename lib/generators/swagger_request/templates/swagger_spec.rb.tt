@@ -1,0 +1,201 @@
+# frozen_string_literal: true
+
+require 'swagger_helper'
+
+RSpec.describe <%= controller_class_name %>, type: :request do
+  before do
+    @<%= singular_name %> = create(:<%= singular_name %>)
+  end
+
+  path '/<%= plural_name %>.json' do
+    get '#index' do
+      tags '<%= plural_name.capitalize %>'
+      consumes 'application/json'
+
+      response '200', '#index' do
+        schema type: :object,
+          properties: {
+            <%= plural_name %>: {
+              type: :array,
+              items: {
+                type: :object,
+                properties: {
+                  id: { type: :integer },
+                  <%- attributes_hash.each do |key, val| -%>
+                  <%= key %>: { type: :<%= val %> },
+                  <%- end -%>
+                  discarded_at: { type: :string, 'x-nullable': true },
+                  created_at: { type: :string },
+                  updated_at: { type: :string },
+                },
+                required: %w[id <%= attributes_list %> discarded_at created_at updated_at],
+              },
+            },
+          },
+          required: %w[<%= plural_name %>]
+
+        run_test!
+      end
+    end
+  end
+
+  path '/<%= plural_name %>/{id}.json' do
+    get '#show' do
+      tags '<%= plural_name.capitalize %>'
+      consumes 'application/json'
+
+      response '200', '#show' do
+        parameter name: :id, in: :path, type: :integer
+
+        schema type: :object,
+          properties: {
+            <%= singular_name %>: {
+              type: :object,
+              properties: {
+                id: { type: :integer },
+                <%- attributes_hash.each do |key, val| -%>
+                <%= key %>: { type: :<%= val %> },
+                <%- end -%>
+                discarded_at: { type: :string, 'x-nullable': true },
+                created_at: { type: :string },
+                updated_at: { type: :string },
+              },
+              required: %w[id <%= attributes_list %> discarded_at created_at updated_at],
+            },
+          },
+          required: %w[<%= singular_name %>]
+
+        let(:id) { @<%= singular_name %>.id }
+
+        run_test!
+      end
+    end
+  end
+
+  path '/<%= plural_name %>.json' do
+    post '#create' do
+      tags '<%= plural_name.capitalize %>'
+      consumes 'application/json'
+
+      response '201', '#create' do
+        parameter name: :payload, in: :body, schema: {
+          type: :object,
+          properties: {
+            <%= singular_name %>: {
+              type: :object,
+              properties: {
+                <%- attributes_hash.each do |key, val| -%>
+                <%= key %>: { type: :<%= val %> },
+                <%- end -%>
+              },
+              required: %w[<%= attributes_list %>],
+            },
+          },
+          required: %w[<%= singular_name %>],
+        }
+
+        schema type: :object,
+          properties: {
+            <%= singular_name %>: {
+              type: :object,
+              properties: {
+                id: { type: :integer },
+                <%- attributes_hash.each do |key, val| -%>
+                <%= key %>: { type: :<%= val %> },
+                <%- end -%>
+                discarded_at: { type: :string, 'x-nullable': true },
+                created_at: { type: :string },
+                updated_at: { type: :string },
+              },
+              required: %w[id <%= attributes_list %> discarded_at created_at updated_at],
+            },
+          },
+          required: %w[<%= singular_name %>]
+
+        let(:payload) do
+          {
+            <%= singular_name %>: {
+              <%- attributes_names.each do |val| -%>
+              <%= val %>: 'New <%= singular_name %>',
+              <%- end -%>
+            },
+          }
+        end
+
+        run_test!
+      end
+    end
+  end
+
+  path '/<%= plural_name %>/{id}.json' do
+    put '#update' do
+      tags '<%= plural_name.capitalize %>'
+      consumes 'application/json'
+
+      response '200', '#update' do
+        parameter name: :id, in: :path, type: :integer
+        parameter name: :payload, in: :body, schema: {
+          type: :object,
+          properties: {
+            <%= singular_name %>: {
+              type: :object,
+              properties: {
+                <%- attributes_hash.each do |key, val| -%>
+                <%= key %>: { type: :<%= val %> },
+                <%- end -%>
+              },
+              required: %w[<%= attributes_list %>],
+            },
+          },
+          required: %w[<%= singular_name %>],
+        }
+
+        schema type: :object,
+          properties: {
+            <%= singular_name %>: {
+              type: :object,
+              properties: {
+                id: { type: :integer },
+                <%- attributes_hash.each do |key, val| -%>
+                <%= key %>: { type: :<%= val %> },
+                <%- end -%>
+                discarded_at: { type: :string, 'x-nullable': true },
+                created_at: { type: :string },
+                updated_at: { type: :string },
+              },
+              required: %w[id <%= attributes_list %> discarded_at created_at updated_at],
+            },
+          },
+          required: %w[<%= singular_name %>]
+
+        let(:id) { @<%= singular_name %>.id }
+        let(:payload) do
+          {
+            <%= singular_name %>: {
+              <%- attributes_names.each do |val| -%>
+              <%= val %>: 'Update <%= singular_name %>',
+              <%- end -%>
+            },
+          }
+        end
+
+        run_test!
+      end
+    end
+  end
+
+  path '/<%= plural_name %>/{id}.json' do
+    delete '#destroy' do
+      tags '<%= plural_name.capitalize %>'
+      consumes 'application/json'
+
+      response '204', '#destroy' do
+        parameter name: :id, in: :path, type: :integer
+
+        let(:id) { @<%= singular_name %>.id }
+
+        run_test!
+      end
+    end
+  end
+end

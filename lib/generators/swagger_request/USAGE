@@ -1,0 +1,8 @@
+Description:
+    Generate request test for swagger
+
+Example:
+    rails g swagger_request Api::V1::BooksController title author
+
+    This will create:
+        spec/requests/api/v1/books_controller_spec.rb
