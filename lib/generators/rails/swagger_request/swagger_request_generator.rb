@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SwaggerRequestGenerator < Rails::Generators::NamedBase
+class Rails::SwaggerRequestGenerator < Rails::Generators::NamedBase
   source_root File.expand_path('templates', __dir__)
 
   argument :attributes, type: :array, default: [], banner: 'field[:type][:index] field[:type][:index]'

@@ -1,0 +1,30 @@
+Description:
+    Scaffold controller, model, migration and swagger request test
+
+Example:
+    rails g scaffold_resource Api::V1::BooksController name:json
+
+    This will create:
+        invoke  active_record
+        create    db/migrate/19870513023001_create_core_workstations.rb
+        create    app/models/core/workstation.rb
+        create    app/models/core.rb
+        invoke    rspec
+        create      spec/models/core/workstation_spec.rb
+        invoke      factory_bot
+        create        spec/factories/core_workstations.rb
+        invoke  scaffold_controller
+        create    app/controllers/api/v1/workstations_controller.rb
+        invoke    rspec
+        create      spec/controllers/api/v1/workstations_controller_spec.rb
+        create      spec/routing/api/v1/workstations_routing_spec.rb
+        invoke      rspec
+        create        spec/requests/api/v1/api_v1_workstations_spec.rb
+        invoke    jbuilder
+        create      app/views/api/v1/workstations/index.json.jbuilder
+        create      app/views/api/v1/workstations/show.json.jbuilder
+        create      app/views/api/v1/workstations/_workstation.json.jbuilder
+        invoke  pundit_policy
+        create    app/policies/api/v1/workstation_policy.rb
+        invoke  swagger_request
+        create    spec/requests/api/v1/workstations_controller_spec.rb
