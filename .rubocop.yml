@@ -1,0 +1,90 @@
+require: rubocop-rspec
+
+AllCops:
+  DisplayCopNames: true
+  TargetRubyVersion: 2.5
+  Exclude:
+    - bin/*
+    - db/schema.rb
+
+Rails:
+  Enabled: true
+
+# https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Layout/AlignHash
+Layout/AlignHash:
+  EnforcedLastArgumentHashStyle: always_ignore
+
+# Enforce indentation to be fixed on a multi-line method call
+# https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Layout/AlignParameters
+Layout/AlignParameters:
+  EnforcedStyle: with_fixed_indentation
+
+# https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Layout/CaseIndentation
+Layout/CaseIndentation:
+  EnforcedStyle: end
+
+# Enforce indentation to be indented on the method name part in method calls that span more than one line
+# http://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Layout/MultilineMethodCallIndentation
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+# https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Layout/EndAlignment
+Layout/EndAlignment:
+  EnforcedStyleAlignWith: variable
+
+# Allow blocks to have at most `Max` number of lines
+Metrics/BlockLength:
+  Exclude:
+    - 'Gemfile'
+    - 'Rakefile'
+    - 'spec/**/*.rb'
+
+# Allow lines to have at most `Max` number of characters
+Metrics/LineLength:
+  Max: 120
+
+# Allow methods to have at most `Max` number of lines
+Metrics/MethodLength:
+  Max: 30
+
+# https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Style/AndOr
+Style/AndOr:
+  EnforcedStyle: conditionals
+
+# Don't warn if class/module children is defined inline or not
+# https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Style/ClassAndModuleChildren
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+# Don't warn if no documentation is found for classes
+Style/Documentation:
+  Enabled: false
+
+# Empty methods should be defined expanded
+# http://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Style/EmptyMethod
+Style/EmptyMethod:
+  EnforcedStyle: expanded
+
+# Enforce % string format
+# https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Style/FormatString
+Style/FormatString:
+  EnforcedStyle: percent
+
+# Warn if %i[] or %I[] is used instead of [:sym]
+# https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Style/SymbolArray
+Style/SymbolArray:
+  MinSize: 5
+
+# Require comma after the last element of a multiline array
+# https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Style/TrailingCommaInArrayLiteral
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma
+
+# Require comma after the last element of a multiline hash
+# https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Style/TrailingCommaInHashLiteral
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma
+
+# https://www.rubydoc.info/gems/rubocop-rspec/1.7.0/RuboCop/Cop/RSpec/EmptyExampleGroup
+RSpec/EmptyExampleGroup:
+  Enabled: false
