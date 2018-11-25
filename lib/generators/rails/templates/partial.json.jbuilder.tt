@@ -1,0 +1,3 @@
+# frozen_string_literal: true
+
+json.extract! <%= singular_name %>, <%= attributes_list %>, :discarded_at, :created_at, :updated_at

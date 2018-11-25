@@ -1,0 +1,5 @@
+# frozen_string_literal: true
+
+json.set! :<%= singular_name %> do
+  json.partial! '<%= partial_path %>', <%= singular_name %>: @<%= singular_name %>
+end

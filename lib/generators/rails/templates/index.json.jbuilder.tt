@@ -1,0 +1,5 @@
+# frozen_string_literal: true
+
+json.set! :<%= plural_name %> do
+  json.array! @<%= plural_name %>, partial: '<%= partial_path %>', as: :<%= singular_name %>
+end

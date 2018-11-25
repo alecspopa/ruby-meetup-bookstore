@@ -1,0 +1,48 @@
+# frozen_string_literal: true
+
+class <%= controller_class_name %> < ApplicationController
+  before_action :set_<%= singular_name %>, only: [:show, :update, :destroy]
+
+  def index
+    @<%= plural_name %> = <%= orm_class.all(class_name) %>
+  end
+
+  def show
+  end
+
+  def create
+    @<%= singular_name %> = <%= orm_class.build(class_name, "#{singular_name}_params") %>
+
+    if @<%= orm_instance.save %>
+      render :show, status: :created
+    else
+      render json: <%= "@#{orm_instance.errors}" %>, status: :unprocessable_entity
+    end
+  end
+
+  def update
+    if @<%= orm_instance.update("#{singular_name}_params") %>
+      render :show, status: :ok
+    else
+      render json: <%= "@#{orm_instance.errors}" %>, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @<%= singular_name %>.discard
+  end
+
+  private
+
+  def set_<%= singular_name %>
+    @<%= singular_name %> = <%= orm_class.find(class_name, "params[:id]") %>
+  end
+
+  def <%= "#{singular_name}_params" %>
+    <%- if attributes_names.empty? -%>
+    params.require(:<%= singular_name %>).permit()
+    <%- else -%>
+    params.require(:<%= singular_name %>).permit(<%= attributes_names.map { |name| ":#{name}" }.join(', ') %>)
+    <%- end -%>
+  end
+end
