@@ -48,3 +48,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'rubocop', '~> 0.60.0'
 
 gem 'discard', '~> 1.0'
+
+gem 'rspec-rails', '~> 3.8', groups: [:development, :test]
