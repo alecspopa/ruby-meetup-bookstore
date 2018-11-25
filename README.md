@@ -1,24 +1,11 @@
-# README
+# Bookstore API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Adding a new resource
 
-Things you may want to cover:
+1. Generate the model and the migration
 
-* Ruby version
+    ```shell
+    rails g model Book title author no_pages:integer discarded_at:datetime:index
+    ```
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+    **Fix rubocop issues**
