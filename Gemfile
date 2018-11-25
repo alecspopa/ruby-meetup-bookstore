@@ -52,3 +52,5 @@ gem 'discard', '~> 1.0'
 gem 'rspec-rails', '~> 3.8', groups: [:development, :test]
 
 gem 'rswag', '~> 2.0'
+
+gem 'factory_bot_rails', '~> 4.11', :groups => [:development, :test]
