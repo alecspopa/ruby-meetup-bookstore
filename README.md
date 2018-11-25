@@ -21,3 +21,7 @@
     - Fix rubocop issues
 
     - Change destroy to use `discard` in place of `destroy`
+    
+3. Create an integration test for Rswag
+
+    - use `spec/requests/api/v1/books_controller_spec.rb` as a template

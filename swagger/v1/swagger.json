@@ -1,0 +1,351 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API V1",
+    "version": "v1"
+  },
+  "paths": {
+    "/books.json": {
+      "get": {
+        "summary": "#index",
+        "tags": [
+          "Books"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "#index",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "books": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer"
+                      },
+                      "title": {
+                        "type": "string"
+                      },
+                      "author": {
+                        "type": "string"
+                      },
+                      "no_pages": {
+                        "type": "integer"
+                      },
+                      "discarded_at": {
+                        "type": "string",
+                        "x-nullable": true
+                      },
+                      "created_at": {
+                        "type": "string"
+                      },
+                      "updated_at": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "title",
+                      "author",
+                      "no_pages",
+                      "discarded_at",
+                      "created_at",
+                      "updated_at"
+                    ]
+                  }
+                }
+              },
+              "required": [
+                "books"
+              ]
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "#create",
+        "tags": [
+          "Books"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "payload",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "book": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string"
+                    },
+                    "author": {
+                      "type": "string"
+                    },
+                    "no_pages": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "title",
+                    "author",
+                    "no_pages"
+                  ]
+                }
+              },
+              "required": [
+                "book"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "#create",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "book": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "author": {
+                      "type": "string"
+                    },
+                    "no_pages": {
+                      "type": "integer"
+                    },
+                    "discarded_at": {
+                      "type": "string",
+                      "x-nullable": true
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "title",
+                    "author",
+                    "no_pages",
+                    "discarded_at",
+                    "created_at",
+                    "updated_at"
+                  ]
+                }
+              },
+              "required": [
+                "book"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/books/{id}.json": {
+      "get": {
+        "summary": "#show",
+        "tags": [
+          "Books"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "integer",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "#show",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "book": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "author": {
+                      "type": "string"
+                    },
+                    "no_pages": {
+                      "type": "integer"
+                    },
+                    "discarded_at": {
+                      "type": "string",
+                      "x-nullable": true
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "title",
+                    "author",
+                    "no_pages",
+                    "discarded_at",
+                    "created_at",
+                    "updated_at"
+                  ]
+                }
+              },
+              "required": [
+                "book"
+              ]
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "#update",
+        "tags": [
+          "Books"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "name": "payload",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "book": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string"
+                    },
+                    "author": {
+                      "type": "string"
+                    },
+                    "no_pages": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "title",
+                    "author",
+                    "no_pages"
+                  ]
+                }
+              },
+              "required": [
+                "book"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "#update",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "book": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "author": {
+                      "type": "string"
+                    },
+                    "no_pages": {
+                      "type": "integer"
+                    },
+                    "discarded_at": {
+                      "type": "string",
+                      "x-nullable": true
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "title",
+                    "author",
+                    "no_pages",
+                    "discarded_at",
+                    "created_at",
+                    "updated_at"
+                  ]
+                }
+              },
+              "required": [
+                "book"
+              ]
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "#destroy",
+        "tags": [
+          "Books"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "integer",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "#destroy"
+          }
+        }
+      }
+    }
+  },
+  "basePath": "/api/v1"
+}
